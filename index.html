@@ -37,8 +37,9 @@
 
         <!-- Micro interaction styles (kept local to this section for now) -->
         <style>
-        /* Subtle micro interaction: "micro means micro" — restrained, purposeful feedback */
-  .micro-demo { padding: 1rem; display: inline-block; border-radius: 8px; background: rgba(107,87,230,0.03); }
+  /* Subtle micro interaction: "micro means micro" — restrained, purposeful feedback */
+  /* Keep this demo area using flex so the button centers correctly */
+  .micro-demo { padding: 1rem; display: flex; justify-content: center; align-items: center; border-radius: 8px; background: rgba(107,87,230,0.03); }
         .interactive-element {
           --duration: 300ms; /* inside 250–400ms range */
           appearance: none;
