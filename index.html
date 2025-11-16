@@ -104,29 +104,81 @@
       <!-- Container for side-by-side comparison -->
       <div class="comparison-container">
 
-        <!-- Element 1: First timing function -->
+        <!-- Element 1: First timing function (Linear) -->
         <div class="comparison-item">
-          <button class="timing-button timing-one">
+          <button class="timing-button timing-one" type="button" aria-label="Linear timing example">
             Hover Me
           </button>
-          <p class="timing-label">Timing Function 1</p>
-          <!-- Add your first timing function name -->
+          <p class="timing-label">Linear</p>
         </div>
 
-        <!-- Element 2: Second timing function -->
+        <!-- Element 2: Second timing function (Ease-out) -->
         <div class="comparison-item">
-          <button class="timing-button timing-two">
+          <button class="timing-button timing-two" type="button" aria-label="Ease-out timing example">
             Hover Me
           </button>
-          <p class="timing-label">Timing Function 2</p>
-          <!-- Add your second timing function name -->
+          <p class="timing-label">Ease-out</p>
         </div>
 
       </div>
 
+      <!-- Local styles for the timing comparison (kept here for clarity) -->
+      <style>
+      .comparison-container { display: flex; gap: 1.5rem; align-items: flex-start; justify-content: center; padding: 1rem 0; }
+      .comparison-item { text-align: center; width: 160px; }
+      .timing-label { margin-top: 0.5rem; color: #333; font-size: 0.9rem; }
+
+      /* Base button (identical visual properties) */
+      .timing-button {
+        --duration: 600ms; /* same duration for both */
+        --easing: linear;   /* default easing: linear */
+        appearance: none;
+        border: 0;
+        background: #0b5eff;
+        color: #fff;
+        padding: 0.6rem 1rem;
+        font-size: 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        width: 100%;
+        transition: transform var(--duration) var(--easing),
+                    box-shadow var(--duration) var(--easing),
+                    background-color var(--duration) var(--easing);
+        transform: translateY(0) scale(1);
+        box-shadow: 0 0 0 rgba(11,94,255,0);
+      }
+
+      /* Timing variations: only the easing differs */
+      .timing-one { --easing: linear; }
+      .timing-two { --easing: cubic-bezier(.22,.9,.33,1); } /* ease-out-like curve */
+
+      /* Hover / focus state (identical end state) */
+      .timing-button:hover,
+      .timing-button:focus {
+        transform: translateY(-14px) scale(1.05);
+        background: #094fe6;
+        box-shadow: 0 22px 44px rgba(11,94,255,0.14);
+        outline: none;
+      }
+
+      /* Accessible keyboard focus */
+      .timing-button:focus-visible {
+        outline: 3px solid rgba(11,94,255,0.18);
+        outline-offset: 4px;
+      }
+
+      /* Reduced motion: remove animation but keep a clear state change */
+      @media (prefers-reduced-motion: reduce) {
+        .timing-button { transition: none !important; transform: none !important; box-shadow: none !important; }
+        .timing-button:hover,
+        .timing-button:focus { background: #094fe6; }
+      }
+      </style>
+
       <!-- Explanation of timing differences -->
       <p class="motion-caption">
-        Describe the difference in feel between these two timing functions and which feels more natural (2-3 sentences).
+        Linear moves at a steady, constant rate — it feels mechanical and unforgiving. Ease-out starts a little faster and slows into place,
+        which reads as more natural and responsive; the easing gives the motion a friendly, intentional finish that feels easier to perceive.
       </p>
     </section>
 
