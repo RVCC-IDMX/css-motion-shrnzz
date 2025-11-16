@@ -123,6 +123,14 @@ main {
   text-align: left;
 }
 
+/* Make the first three section headings bold and centered */
+#micro-interaction h2,
+#timing-comparison h2,
+#feature-card h2 {
+  text-align: center;
+  font-weight: 700;
+}
+
 /* ============================================
    SECTION 1: MICRO INTERACTION
    Container for single interactive element
