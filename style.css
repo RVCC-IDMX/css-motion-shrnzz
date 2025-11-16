@@ -25,7 +25,15 @@
 
   /* Card dimensions (for Section 3) */
   --card-width: 400px;
-  --card-height: 500px;
+  --card-height: 260px;
+
+  /* Color system */
+  --color-bg: #fff7ea; /* cream background */
+  --color-surface: #ffffff;
+  --color-text: #07213a;
+  --color-muted: #6b7785;
+  --color-accent: #7E6BFF; /* lavender purple */
+  --color-accent-600: #6B57E6; /* darker lavender for hover */
 }
 
 /* ============================================
@@ -44,8 +52,11 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-
-  /* You'll add: background color, text color, font-family */
+  /* page theming */
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  line-height: 1.4;
 }
 
 /* ============================================
@@ -55,17 +66,22 @@ body {
 header {
   padding: var(--space-xl) var(--container-padding);
   text-align: center;
-
-  /* You'll add: background, border, or other styling */
+  background: linear-gradient(180deg, rgba(11,94,255,0.06), rgba(11,94,255,0.02));
+  border-bottom: 1px solid rgba(7,33,58,0.04);
 }
 
 header h1 {
-  /* You'll add: font-size, font-weight, color, margin */
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.25rem;
 }
 
 header .subtitle {
   margin-top: var(--space-sm);
-  /* You'll add: font-size, color, font-style */
+  font-size: 1rem;
+  color: var(--color-muted);
+  font-style: italic;
 }
 
 /* ============================================
@@ -94,13 +110,17 @@ main {
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
-  /* Temporary outline for development */
-  outline: 1px solid black;
-  /* You'll add: background, padding, border, border-radius, shadow */
+  background: var(--color-surface);
+  padding: var(--space-lg);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(7,33,58,0.04);
 }
 
 .motion-section h2 {
-  /* You'll add: font-size, font-weight, color, text-align */
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-align: left;
 }
 
 /* ============================================
@@ -113,8 +133,8 @@ main {
   justify-content: center;
   align-items: center;
   padding: var(--space-xl);
-
-  /* You'll add: background or border to define the demo area */
+  background: linear-gradient(180deg, rgba(11,94,255,0.03), rgba(11,94,255,0.01));
+  border-radius: 10px;
 }
 
 .interactive-element {
@@ -122,13 +142,26 @@ main {
   border: none;
   cursor: pointer;
   padding: var(--space-md) var(--space-lg);
+  /* Visual styling for micro interaction */
+  --micro-duration: 300ms; /* 250-400ms */
+  background: var(--color-accent);
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: transform var(--micro-duration) cubic-bezier(.22,.9,.33,1),
+              box-shadow var(--micro-duration) ease,
+              background-color var(--micro-duration) ease;
+  transform: translateY(0) scale(1);
+  box-shadow: 0 0 0 rgba(11,94,255,0);
+}
 
-  /* You'll add:
-     - All styling (colors, fonts, borders, etc.)
-     - Transform and transition properties
-     - Hover and focus states with motion
-     - prefers-reduced-motion alternative
-  */
+.interactive-element:hover,
+.interactive-element:focus {
+  transform: translateY(-3px) scale(1.03);
+  background: var(--color-accent-600);
+  box-shadow: 0 10px 22px rgba(11,94,255,0.12);
+  outline: none;
 }
 
 /* ============================================
@@ -143,7 +176,8 @@ main {
   justify-content: center;
   padding: var(--space-lg);
 
-  /* You'll add: background or border to define comparison area */
+  background: linear-gradient(180deg, rgba(7,33,58,0.02), rgba(7,33,58,0.01));
+  border-radius: 10px;
 }
 
 .comparison-item {
@@ -161,18 +195,23 @@ main {
   cursor: pointer;
   padding: var(--space-md) var(--space-lg);
   width: 100%;
-
-  /* You'll add:
-     - All styling (colors, fonts, borders, etc.)
-     - Same transform for both buttons
-     - Same duration for both buttons
-     - DIFFERENT timing functions (timing-one vs timing-two)
-     - prefers-reduced-motion alternative
-  */
+  --timing-duration: 600ms; /* same duration for both */
+  --timing-ease: linear;
+  background: var(--color-accent);
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: transform var(--timing-duration) var(--timing-ease),
+              box-shadow var(--timing-duration) var(--timing-ease),
+              background-color var(--timing-duration) var(--timing-ease);
+  transform: translateY(0) scale(1);
+  box-shadow: 0 0 0 rgba(11,94,255,0);
 }
 
 .timing-label {
-  /* You'll add: font-size, color, font-weight */
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  font-weight: 500;
 }
 
 /* ============================================
@@ -187,8 +226,7 @@ main {
   justify-content: center;
   align-items: center;
   padding: var(--space-xl);
-
-  /* You'll add: background, perspective value for 3D effect */
+  perspective: 1200px;
 }
 
 /* Card inner - this is what rotates */
@@ -197,10 +235,9 @@ main {
   width: var(--card-width);
   height: var(--card-height);
   position: relative;
-
-  /* This enables 3D transforms for child elements */
-  /* You'll add: transform-style: preserve-3d */
-  /* You'll add: transition for the rotation */
+  transform-style: preserve-3d;
+  transition: transform 500ms cubic-bezier(.22,.9,.33,1);
+  will-change: transform;
 }
 
 /* Both card faces share these properties */
@@ -221,18 +258,21 @@ main {
   padding: var(--space-lg);
   gap: var(--space-md);
 
-  /* You'll add: background, border, border-radius, shadow, colors */
+  /* default face styling */
+  background: var(--color-surface);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(7,33,58,0.06);
 }
 
 /* Front face - visible by default */
 .card-front {
-  /* You'll add: any front-specific styling */
+  display:flex; align-items:center; justify-content:center;
 }
 
 /* Back face - rotated 180 degrees */
 .card-back {
-  /* You'll add: transform: rotateY(180deg) to flip this face */
-  /* You'll add: any back-specific styling */
+  transform: rotateY(180deg);
+  display:flex; align-items:flex-start; justify-content:center;
 }
 
 /* Hover/focus state for card */
@@ -253,18 +293,22 @@ main {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
-
-  /* You'll add: background, padding, border, border-radius */
+  background: transparent;
+  padding: 0;
 }
 
 .accessibility-note h3,
 .reflection-text h3 {
-  /* You'll add: font-size, font-weight, color */
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
 }
 
 .accessibility-note p,
 .reflection-text p {
-  /* You'll add: font-size, line-height, color */
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--color-text);
 }
 
 /* ============================================
@@ -273,7 +317,10 @@ main {
    ============================================ */
 .motion-caption {
   text-align: center;
-  /* You'll add: font-size, color, line-height, font-style */
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  line-height: 1.4;
+  font-style: italic;
 }
 
 /* ============================================
@@ -284,12 +331,13 @@ footer {
   padding: var(--space-lg) var(--container-padding);
   margin-top: auto;
   text-align: center;
-
-  /* You'll add: background, border-top, color */
+  border-top: 1px solid rgba(7,33,58,0.04);
+  background: transparent;
 }
 
 footer p {
-  /* You'll add: font-size, color */
+  font-size: 0.95rem;
+  color: var(--color-muted);
 }
 
 /* ============================================
@@ -351,6 +399,24 @@ footer p {
 
   }
 */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Remove or greatly shorten motion for assistive users */
+  .interactive-element,
+  .timing-button,
+  .card-inner {
+    transition: none !important;
+  }
+
+  /* For card: present back instantly when triggered (no animated flip) */
+  .card-container:hover .card-inner,
+  .card-container:focus-within .card-inner,
+  .card:hover .card-inner,
+  .card:focus .card-inner {
+    transition: none !important;
+    transform: rotateY(180deg) !important;
+  }
+}
 
 /* ============================================
    NOTES FOR STUDENTS
