@@ -12,7 +12,7 @@
 
   <!-- Page header with title and subtitle -->
   <header>
-    <h1>Motion Board</h1>
+    <h1>Motion Board - CSS motion experiments </h1>
     <!-- Change the h1 to your preferred title -->
     <p class="subtitle">Three experiments exploring motion and accessibility with CSS</p>
     <!-- Customize the subtitle to match your approach -->
@@ -31,16 +31,66 @@
       <!-- Container for your interactive element -->
       <div class="micro-demo">
         <!-- Replace with your chosen element: button, badge, tag, icon, or link -->
-        <button class="interactive-element">
+        <button class="interactive-element" type="button">
           Hover or Focus Me
         </button>
+
+        <!-- Micro interaction styles (kept local to this section for now) -->
+        <style>
+        /* Subtle micro interaction: "micro means micro" — restrained, purposeful feedback */
+        .micro-demo { padding: 1rem; display: inline-block; border-radius: 8px; background: #f7fbff; }
+        .interactive-element {
+          --duration: 300ms; /* inside 250–400ms range */
+          appearance: none;
+          border: 0;
+          background: #0b5eff;
+          color: #ffffff;
+          padding: 0.5rem 0.85rem;
+          font-size: 1rem;
+          border-radius: 6px;
+          cursor: pointer;
+          transition: transform var(--duration) cubic-bezier(.22,.9,.33,1),
+                      box-shadow var(--duration) ease,
+                      background-color var(--duration) ease;
+          transform: translateY(0) scale(1);
+          box-shadow: 0 0 0 rgba(11,94,255,0);
+        }
+        /* Hover and focus: a gentle lift + tiny scale with soft shadow */
+        .interactive-element:hover,
+        .interactive-element:focus {
+          transform: translateY(-3px) scale(1.03);
+          background: #0a58ff;
+          box-shadow: 0 10px 22px rgba(11,94,255,0.12);
+          outline: none; /* use focus-visible for keyboard outline */
+        }
+        /* Keep a clear, visible focus for keyboard users */
+        .interactive-element:focus-visible {
+          outline: 3px solid rgba(11,94,255,0.18);
+          outline-offset: 3px;
+        }
+        /* Reduced motion: remove animation but preserve clear state change */
+        @media (prefers-reduced-motion: reduce) {
+          .interactive-element {
+            transition: none !important;
+            transform: none !important;
+            box-shadow: none !important;
+          }
+          .interactive-element:hover,
+          .interactive-element:focus {
+            /* keep a distinct visual state without motion */
+            background: #0a58ff;
+          }
+        }
+        </style>
+
         <!-- Add your transform and transition here -->
         <!-- Remember: smooth state change, 250-400ms duration -->
       </div>
 
       <!-- Caption explaining the motion's personality -->
       <p class="motion-caption">
-        Brief description of this motion's personality and intent (1-2 sentences).
+        The button gives a gentle lift and tiny scale (300ms) to communicate interactivity with restraint. 
+        Reduced-motion users receive an immediate color and focus change so state remains clear without animation.
       </p>
     </section>
 
