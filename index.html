@@ -38,7 +38,7 @@
         <!-- Micro interaction styles (kept local to this section for now) -->
         <style>
         /* Subtle micro interaction: "micro means micro" — restrained, purposeful feedback */
-        .micro-demo { padding: 1rem; display: inline-block; border-radius: 8px; background: rgba(126,107,255,0.03); }
+  .micro-demo { padding: 1rem; display: inline-block; border-radius: 8px; background: rgba(107,87,230,0.03); }
         .interactive-element {
           --duration: 300ms; /* inside 250–400ms range */
           appearance: none;
@@ -53,19 +53,19 @@
                       box-shadow var(--duration) ease,
                       background-color var(--duration) ease;
           transform: translateY(0) scale(1);
-          box-shadow: 0 0 0 rgba(126,107,255,0);
+          box-shadow: 0 0 0 rgba(107,87,230,0);
         }
         /* Hover and focus: a gentle lift + tiny scale with soft shadow */
         .interactive-element:hover,
         .interactive-element:focus {
           transform: translateY(-3px) scale(1.03);
           background: var(--color-accent-600);
-          box-shadow: 0 10px 22px rgba(126,107,255,0.12);
+          box-shadow: 0 10px 22px rgba(107,87,230,0.12);
           outline: none; /* use focus-visible for keyboard outline */
         }
         /* Keep a clear, visible focus for keyboard users */
         .interactive-element:focus-visible {
-          outline: 3px solid rgba(126,107,255,0.18);
+          outline: 3px solid rgba(107,87,230,0.18);
           outline-offset: 3px;
         }
         /* Reduced motion: remove animation but preserve clear state change */
@@ -145,7 +145,7 @@
                     box-shadow var(--duration) var(--easing),
                     background-color var(--duration) var(--easing);
         transform: translateY(0) scale(1);
-        box-shadow: 0 0 0 rgba(126,107,255,0);
+  box-shadow: 0 0 0 rgba(107,87,230,0);
       }
 
       /* Timing variations: only the easing differs */
@@ -157,13 +157,13 @@
       .timing-button:focus {
         transform: translateY(-14px) scale(1.05);
         background: var(--color-accent-600);
-        box-shadow: 0 22px 44px rgba(126,107,255,0.14);
+  box-shadow: 0 22px 44px rgba(107,87,230,0.14);
         outline: none;
       }
 
       /* Accessible keyboard focus */
       .timing-button:focus-visible {
-        outline: 3px solid rgba(11,94,255,0.18);
+        outline: 3px solid rgba(107,87,230,0.18);
         outline-offset: 4px;
       }
 
@@ -171,7 +171,7 @@
       @media (prefers-reduced-motion: reduce) {
         .timing-button { transition: none !important; transform: none !important; box-shadow: none !important; }
         .timing-button:hover,
-        .timing-button:focus { background: #094fe6; }
+        .timing-button:focus { background: var(--color-accent-600); }
       }
       </style>
 
@@ -244,7 +244,7 @@
       /* Each face shares the same layout and preserves the card size so layout doesn't reflow */
       .card-face { position:absolute; inset:0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 12px; overflow: hidden; display:flex; align-items:center; justify-content:center; }
 
-  .card-front { background: linear-gradient(180deg, rgba(126,107,255,0.08), rgba(126,107,255,0.04)); color:#07213a; box-shadow: 0 6px 18px rgba(7,33,58,0.06); }
+  .card-front { background: linear-gradient(180deg, rgba(107,87,230,0.08), rgba(107,87,230,0.04)); color:#07213a; box-shadow: 0 6px 18px rgba(7,33,58,0.06); }
   .card-back { background: linear-gradient(180deg,#ffffff,#fbf9ff); color:#07213a; transform: rotateY(180deg); box-shadow: 0 6px 24px rgba(7,33,58,0.08); padding:1rem; }
 
       .card-content { padding: 1.25rem; text-align:center; }
@@ -265,7 +265,7 @@
       .card:hover .card-front { box-shadow: 0 18px 42px rgba(7,33,58,0.12); }
 
       /* Focus-visible for keyboard users */
-  .card:focus-visible { outline: 3px solid rgba(126,107,255,0.14); outline-offset: 6px; border-radius: 12px; }
+  .card:focus-visible { outline: 3px solid rgba(107,87,230,0.14); outline-offset: 6px; border-radius: 12px; }
 
       /* Reduced motion: remove transitions, present the back instantly on hover/focus to keep a clear state change */
       @media (prefers-reduced-motion: reduce) {
