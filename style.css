@@ -27,13 +27,14 @@
   --card-width: 400px;
   --card-height: 260px;
 
-  /* Color system */
-  --color-bg: #fff7ea; /* cream background */
-  --color-surface: #ffffff;
-  --color-text: #07213a;
-  --color-muted: #545f6b;
-  --color-accent: #6B57E6; /* lavender purple (accessible) */
-  --color-accent-600: #5745cc; /* darker lavender for hover */
+  /* Color system - using hsl() format */
+  --color-bg: hsl(33, 100%, 95%); /* cream background */
+  --color-surface: hsl(0, 0%, 100%);
+  --color-text: hsl(209, 79%, 13%);
+  --color-muted: hsl(210, 11%, 38%);
+  --color-accent: hsl(249, 74%, 62%); /* lavender purple (accessible) */
+  --color-accent-600: hsl(249, 59%, 54%); /* darker lavender for hover */
+  --color-light: hsl(0, 0%, 100%); /* white for text on dark backgrounds */
 }
 
 /* ============================================
@@ -66,8 +67,8 @@ body {
 header {
   padding: var(--space-xl) var(--container-padding);
   text-align: center;
-  background: linear-gradient(180deg, rgba(107,87,230,0.06), rgba(107,87,230,0.02));
-  border-bottom: 1px solid rgba(7,33,58,0.04);
+  background: linear-gradient(180deg, hsla(249, 74%, 62%, 0.06), hsla(249, 74%, 62%, 0.02));
+  border-bottom: 1px solid hsla(209, 79%, 13%, 0.04);
 }
 
 header h1 {
@@ -113,7 +114,7 @@ main {
   background: var(--color-surface);
   padding: var(--space-lg);
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(7,33,58,0.04);
+  box-shadow: 0 6px 20px hsla(209, 79%, 13%, 0.04);
 }
 
 .motion-section h2 {
@@ -141,7 +142,7 @@ main {
   justify-content: center;
   align-items: center;
   padding: var(--space-xl);
-  background: linear-gradient(180deg, rgba(107,87,230,0.03), rgba(107,87,230,0.01));
+  background: linear-gradient(180deg, hsla(249, 74%, 62%, 0.03), hsla(249, 74%, 62%, 0.01));
   border-radius: 10px;
 }
 
@@ -153,7 +154,7 @@ main {
   /* Visual styling for micro interaction */
   --micro-duration: 300ms; /* 250-400ms */
   background: var(--color-accent);
-  color: #fff;
+  color: var(--color-light);
   border-radius: 8px;
   font-weight: 600;
   font-size: 1rem;
@@ -161,14 +162,14 @@ main {
               box-shadow var(--micro-duration) ease,
               background-color var(--micro-duration) ease;
   transform: translateY(0) scale(1);
-  box-shadow: 0 0 0 rgba(107,87,230,0);
+  box-shadow: 0 0 0 hsla(249, 74%, 62%, 0);
 }
 
 .interactive-element:hover,
 .interactive-element:focus {
   transform: translateY(-3px) scale(1.03);
   background: var(--color-accent-600);
-  box-shadow: 0 10px 22px rgba(107,87,230,0.12);
+  box-shadow: 0 10px 22px hsla(249, 74%, 62%, 0.12);
   outline: none;
 }
 
@@ -184,7 +185,7 @@ main {
   justify-content: center;
   padding: var(--space-lg);
 
-  background: linear-gradient(180deg, rgba(7,33,58,0.02), rgba(7,33,58,0.01));
+  background: linear-gradient(180deg, hsla(209, 79%, 13%, 0.02), hsla(209, 79%, 13%, 0.01));
   border-radius: 10px;
 }
 
@@ -206,14 +207,14 @@ main {
   --timing-duration: 600ms; /* same duration for both */
   --timing-ease: linear;
   background: var(--color-accent);
-  color: #fff;
+  color: var(--color-light);
   border-radius: 10px;
   font-weight: 600;
   transition: transform var(--timing-duration) var(--timing-ease),
               box-shadow var(--timing-duration) var(--timing-ease),
               background-color var(--timing-duration) var(--timing-ease);
   transform: translateY(0) scale(1);
-  box-shadow: 0 0 0 rgba(107,87,230,0);
+  box-shadow: 0 0 0 hsla(249, 74%, 62%, 0);
 }
 
 .timing-label {
@@ -269,7 +270,7 @@ main {
   /* default face styling */
   background: var(--color-surface);
   border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(7,33,58,0.06);
+  box-shadow: 0 6px 18px hsla(209, 79%, 13%, 0.06);
 }
 
 /* Front face - visible by default */
@@ -339,7 +340,7 @@ footer {
   padding: var(--space-lg) var(--container-padding);
   margin-top: auto;
   text-align: center;
-  border-top: 1px solid rgba(7,33,58,0.04);
+  border-top: 1px solid hsla(209, 79%, 13%, 0.04);
   background: transparent;
 }
 
